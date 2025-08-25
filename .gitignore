@@ -1,0 +1,229 @@
+# ===========================================
+# PIAZZOLA - Monorepo .gitignore
+# ===========================================
+
+# ===========================================
+# ENVIRONNEMENTS
+# ===========================================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+!.env.example
+!.env.production.example
+
+# ===========================================
+# DEPENDANCES NODE.JS
+# ===========================================
+node_modules/
+*/node_modules/
+**/node_modules/
+
+# ===========================================
+# BUILDS ET DISTRIBUTION
+# ===========================================
+dist/
+build/
+*/dist/
+*/build/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+
+# ===========================================
+# LOGS
+# ===========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ===========================================
+# DOCKER
+# ===========================================
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# ===========================================
+# BASE DE DONNÉES
+# ===========================================
+*.sql
+*.db
+*.sqlite
+*.sqlite3
+backups/
+**/backups/
+
+# ===========================================
+# MONITORING ET MÉTRIQUES
+# ===========================================
+monitoring/data/
+prometheus_data/
+grafana_data/
+*.prom
+
+# ===========================================
+# IMAGES ET MÉDIAS
+# ===========================================
+uploads/
+media/
+images/
+**/public/uploads/
+**/public/media/
+**/public/images/
+
+# ===========================================
+# CACHE ET TEMPORAIRES
+# ===========================================
+.cache/
+.temp/
+.tmp/
+*.tmp
+*.temp
+.eslintcache
+.stylelintcache
+
+# ===========================================
+# COUVERTURE DE TESTS
+# ===========================================
+coverage/
+*.lcov
+.nyc_output/
+
+# ===========================================
+# IDE ET ÉDITEURS
+# ===========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================================
+# SYSTÈME D'EXPLOITATION
+# ===========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# PACKAGES ET DISTRIBUTION
+# ===========================================
+*.tgz
+*.tar.gz
+*.zip
+*.rar
+
+# ===========================================
+# FICHIERS DE CONFIGURATION LOCAUX
+# ===========================================
+config.local.js
+config.local.json
+*.local.*
+
+# ===========================================
+# FICHIERS DE SÉCURITÉ
+# ===========================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+**/secrets/
+
+# ===========================================
+# FICHIERS DE DÉPLOIEMENT
+# ===========================================
+deploy.local.sh
+deploy.local.yml
+*.local.yml
+
+# ===========================================
+# FICHIERS DE BACKUP
+# ===========================================
+*.backup
+*.bak
+*.old
+*.orig
+
+# ===========================================
+# FICHIERS DE LOCK
+# ===========================================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# ===========================================
+# FICHIERS DE BUILD TOOLS
+# ===========================================
+.parcel-cache/
+.rollup.cache/
+.webpack/
+.next/
+.nuxt/
+
+# ===========================================
+# FICHIERS DE LINTING ET FORMATTING
+# ===========================================
+.eslintcache
+.prettierignore
+.editorconfig
+
+# ===========================================
+# FICHIERS DE PERFORMANCE
+# ===========================================
+.lighthouseci/
+.webpack-bundle-analyzer-report.html
+
+# ===========================================
+# FICHIERS DE DÉVELOPPEMENT
+# ===========================================
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===========================================
+# FICHIERS SPÉCIFIQUES PIAZZOLA
+# ===========================================
+# Images de pizzas et bannières (à ne pas commiter)
+**/public/pizza_image/*
+**/public/banniere/*
+!**/public/pizza_image/.gitkeep
+!**/public/banniere/.gitkeep
+
+# Fichiers de configuration Firebase
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
+
+# Fichiers de configuration PM2
+.pm2/
+
+# ===========================================
+# EXCEPTIONS (fichiers à garder)
+# ===========================================
+!**/public/pizza_image/.gitkeep
+!**/public/banniere/.gitkeep
+!**/public/uploads/.gitkeep
+!**/public/media/.gitkeep
+!**/public/images/.gitkeep
+!**/backups/.gitkeep
+!**/monitoring/data/.gitkeep

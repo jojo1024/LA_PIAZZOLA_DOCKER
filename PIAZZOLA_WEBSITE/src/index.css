@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+.phone-input .PhoneInputInput {
+    border: none !important; /* Supprime le bord */
+    outline: none; /* Supprime le focus par défaut */
+    box-shadow: none; /* Supprime l'ombre */
+  }
+  
+  .phone-input input:focus {
+    border: 1px solid blue !important; /* Applique une bordure personnalisée au focus */
+    outline: none;
+  }
+  
+
+
+.phone-input .PhoneInputInput {
+    border: none !important; /* Supprime le bord */
+    outline: none; /* Supprime le focus par défaut */
+    box-shadow: none; /* Supprime l'ombre */
+  }
+  
+  .phone-input input:focus {
+    border: 1px solid blue !important; /* Applique une bordure personnalisée au focus */
+    outline: none;
+  }
+  
+
+
+
+html body {
+  @apply font-body antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display;
+}
+
+:root {
+  --font-display: Roboto;
+  --font-body: Roboto;
+}
+
+.theme-animals {
+  --font-display: Inter;
+  --font-body: Inter;
+}
+
+
+.containerx {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem /* 16px */;
+  padding-left: 1rem /* 16px */;
+}
+
+@media (min-width: 640px) {
+  .containerx {
+      max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .containerx {
+      max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .containerx {
+      max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .containerx {
+      max-width: 1280px;
+      padding-right: 100px;
+      padding-left: 100px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .containerx {
+      max-width: 1536px;
+      padding-right: 128px;
+      padding-left: 128px;
+  }
+}

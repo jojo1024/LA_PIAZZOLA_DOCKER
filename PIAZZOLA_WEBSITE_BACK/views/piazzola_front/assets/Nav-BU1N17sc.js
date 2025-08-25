@@ -1,0 +1,1 @@
+import{j as a}from"./vendor-gpPvsGIM.js";const r=({containerClassName:s="",className:e="",children:t})=>a.jsx("nav",{className:`nc-Nav ${s}`,"data-nc-id":"Nav",children:a.jsx("ul",{className:`flex  ${e}`,children:t})});export{r as default};

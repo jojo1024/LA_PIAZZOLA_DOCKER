@@ -1,0 +1,159 @@
+version: '3.8'
+
+services:
+  # Base de données MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: piazzola_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3306:3306"
+    networks:
+      - piazzola_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Backend Admin
+  admin-back:
+    build:
+      context: ./PIAZZOLA_ADMIN_BACK
+      dockerfile: Dockerfile
+    container_name: piazzola_admin_back
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+      - JWT_SECRET=${JWT_SECRET}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}
+      - FIREBASE_PRIVATE_KEY_ID=${FIREBASE_PRIVATE_KEY_ID}
+      - FIREBASE_PRIVATE_KEY=${FIREBASE_PRIVATE_KEY}
+      - FIREBASE_CLIENT_EMAIL=${FIREBASE_CLIENT_EMAIL}
+      - FIREBASE_CLIENT_ID=${FIREBASE_CLIENT_ID}
+      - FIREBASE_CLIENT_X509_CERT_URL=${FIREBASE_CLIENT_X509_CERT_URL}
+    volumes:
+      - admin_images:/app/public
+    ports:
+      - "50001:50001"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - piazzola_network
+
+  # Frontend Admin
+  admin-front:
+    build:
+      context: ./PIAZZOLA_ADMIN_FRONT
+      dockerfile: Dockerfile
+    container_name: piazzola_admin_front
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    depends_on:
+      - admin-back
+    networks:
+      - piazzola_network
+
+  # Backend Website
+  website-back:
+    build:
+      context: ./PIAZZOLA_WEBSITE_BACK
+      dockerfile: Dockerfile
+    container_name: piazzola_website_back
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+    ports:
+      - "50002:50002"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - piazzola_network
+
+  # Frontend Website
+  website-front:
+    build:
+      context: ./PIAZZOLA_WEBSITE
+      dockerfile: Dockerfile
+    container_name: piazzola_website_front
+    restart: unless-stopped
+    ports:
+      - "3002:80"
+    depends_on:
+      - website-back
+    networks:
+      - piazzola_network
+
+  # Monitoring avec Prometheus (optionnel)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: piazzola_prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - piazzola_network
+
+  # Grafana pour les dashboards (optionnel)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: piazzola_grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - piazzola_network
+
+volumes:
+  mysql_data:
+    driver: local
+  admin_images:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  piazzola_network:
+    driver: bridge

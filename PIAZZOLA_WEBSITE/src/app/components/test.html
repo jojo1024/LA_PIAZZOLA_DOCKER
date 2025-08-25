@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page HTML pour Débutants</title>
+</head>
+
+<body>
+    <!-- En-tête principale -->
+    <header>
+        <h1>Bienvenue sur ma première page HTML</h1>
+        <nav>
+            <ul>
+                <li><a href="#section-intro">Introduction</a></li>
+                <li><a href="#section-table">Tableaux</a></li>
+                <li><a href="#section-form">Formulaire</a></li>
+                <li><a href="#section-image">Images</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section d'introduction -->
+    <section id="section-intro">
+        <h2>Introduction</h2>
+        <p>Ceci est une page enrichie avec de nombreuses balises HTML pour apprendre les bases.</p>
+        <blockquote>Citation inspirante : "Apprendre HTML est la clé pour comprendre le web."</blockquote>
+        <p>Voici une liste ordonnée pour vos étapes d'apprentissage :</p>
+        <ol>
+            <li>Commencez par les balises de base (<code>&lt;h1&gt;, &lt;p&gt;</code>, etc.).</li>
+            <li>Ajoutez des images et des liens.</li>
+            <li>Testez les tableaux et formulaires.</li>
+        </ol>
+    </section>
+
+    <!-- Section sur les tableaux -->
+    <section id="section-table">
+        <h2>Les Tableaux</h2>
+        <p>Voici un exemple de tableau HTML simple :</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Âge</th>
+                    <th>Profession</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice</td>
+                    <td>25</td>
+                    <td>Développeuse</td>
+                </tr>
+                <tr>
+                    <td>Bob</td>
+                    <td>30</td>
+                    <td>Designer</td>
+                </tr>
+                <tr>
+                    <td>Charlie</td>
+                    <td>35</td>
+                    <td>Manager</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section sur les formulaires -->
+    <section id="section-form">
+        <h2>Formulaires</h2>
+        <p>Un formulaire permet de saisir des informations :</p>
+        <form action="https://example.com" method="POST">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" placeholder="Entrez votre nom"><br><br>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Entrez votre email"><br><br>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="4" cols="50" placeholder="Votre message ici"></textarea><br><br>
+
+            <label for="gender">Genre :</label>
+            <select id="gender" name="gender">
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+                <option value="other">Autre</option>
+            </select><br><br>
+
+            <input type="submit" value="Envoyer">
+        </form>
+    </section>
+
+    <!-- Section sur les images -->
+    <section id="section-image">
+        <h2>Images</h2>
+        <p>Voici une image illustrant HTML :</p>
+        <img src="https://via.placeholder.com/300" alt="Exemple d'image" width="300">
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>Page créée pour apprendre HTML. © 2025</p>
+        <p>Contactez-moi : <a href="mailto:exemple@email.com">exemple@email.com</a></p>
+    </footer>
+</body>
+
+</html>

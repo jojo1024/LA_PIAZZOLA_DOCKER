@@ -1,0 +1,1 @@
+import{j as s}from"./vendor-gpPvsGIM.js";import{H as x}from"./index-BedEYsRv.js";const a=({title:t,classname:e})=>s.jsx(x,{className:`${e}`,fontClass:"text-neutral-900 text-xl sm:text-3xl md:text-4xl 2xl:text-4xl font-semibold",isCenter:!0,desc:"",style:{fontFamily:"Pacifico"},children:t});export{a as default};

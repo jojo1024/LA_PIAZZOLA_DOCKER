@@ -1,0 +1,14 @@
+# Bloquer l'accès aux répertoires administratifs
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+
+# Permettre l'accès aux fichiers publics
+Allow: /public/
+
+# Interdire les robots d'explorer les pages de recherche
+Disallow: /search?*
+
+# Autoriser l'exploration des fichiers statiques (CSS, JS)
+Allow: /assets/js/
+Allow: /assets/css/
