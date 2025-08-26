@@ -207,9 +207,6 @@ show_help() {
 }
 
 # Chargement des variables d'environnement
-# if [ -f "$ENV_FILE" ]; then
-#     export $(cat $ENV_FILE | grep -v '^#' | xargs)
-# fi
 if [ -f "$ENV_FILE" ]; then
     set -a
     source "$ENV_FILE"
