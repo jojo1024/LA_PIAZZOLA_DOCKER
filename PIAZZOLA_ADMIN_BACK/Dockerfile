@@ -7,8 +7,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 
-# Installer les dépendances
-RUN npm install --only=production
+# Installer TOUTES les dépendances (y compris devDependencies pour TypeScript)
+RUN npm install
 
 # Copier le code source
 COPY src/ ./src/
@@ -33,7 +33,8 @@ RUN adduser -S nodejs -u 1001
 COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
 COPY --from=builder --chown=nodejs:nodejs /app/public ./public
 COPY --from=builder --chown=nodejs:nodejs /app/package*.json ./
-COPY --from=builder --chown=nodejs:nodejs /app/node_modules ./node_modules
+# Installer seulement les dépendances de production dans l'image finale
+RUN npm install --only=production
 COPY --chown=nodejs:nodejs ecosystem.config.js ./
 
 # Créer les dossiers pour les images
