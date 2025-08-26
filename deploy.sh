@@ -207,9 +207,15 @@ show_help() {
 }
 
 # Chargement des variables d'environnement
+# if [ -f "$ENV_FILE" ]; then
+#     export $(cat $ENV_FILE | grep -v '^#' | xargs)
+# fi
 if [ -f "$ENV_FILE" ]; then
-    export $(cat $ENV_FILE | grep -v '^#' | xargs)
+    set -a
+    source "$ENV_FILE"
+    set +a
 fi
+
 
 # Gestion des commandes
 case "${1:-help}" in
