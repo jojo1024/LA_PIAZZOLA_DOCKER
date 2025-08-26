@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ COPY public/ ./public/
 RUN npm run build
 
 # Stage 2: Production
-FROM node:18-alpine AS production
+FROM node:20-alpine AS production
 
 # Installer PM2 globalement
 RUN npm install -g pm2
