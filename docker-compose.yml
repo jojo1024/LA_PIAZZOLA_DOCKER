@@ -57,18 +57,18 @@ services:
       - piazzola_network
 
   # Frontend Admin
-  admin-front:
-    build:
-      context: ./PIAZZOLA_ADMIN_FRONT
-      dockerfile: Dockerfile
-    container_name: piazzola_admin_front
-    restart: unless-stopped
-    ports:
-      - "3001:80"
-    depends_on:
-      - admin-back
-    networks:
-      - piazzola_network
+  # admin-front:
+  #   build:
+  #     context: ./PIAZZOLA_ADMIN_FRONT
+  #     dockerfile: Dockerfile
+  #   container_name: piazzola_admin_front
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3001:80"
+  #   depends_on:
+  #     - admin-back
+  #   networks:
+  #     - piazzola_network
 
   # Backend Website
   website-back:
