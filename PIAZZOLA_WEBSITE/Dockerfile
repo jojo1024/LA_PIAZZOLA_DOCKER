@@ -10,6 +10,8 @@ COPY vite.config.ts ./
 COPY tailwind.config.js ./
 COPY postcss.config.js ./
 COPY eslint.config.js ./
+COPY tsconfig.app.json ./
+COPY tsconfig.node.json ./
 
 # Installer les dépendances
 RUN npm install
