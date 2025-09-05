@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // creation du serveur
 const httpServer = require("http").createServer(app);
-const PORT = 50005
+const PORT = 50002
 
 
 
