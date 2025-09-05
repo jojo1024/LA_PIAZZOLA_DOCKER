@@ -13,8 +13,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./PIAZZOLA_DB/init_piazzola_db.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - "3306:3306"
     networks:
