@@ -1,10 +1,11 @@
 # Stage 1: Build
-FROM node:16-alpine AS builder
+FROM node:20.15.0-alpine AS builder
 
 WORKDIR /app
 
 # Copier les fichiers de dépendances
 COPY package*.json ./
+COPY package-lock.json ./
 COPY tsconfig.json ./
 COPY vite.config.ts ./
 COPY tailwind.config.js ./
