@@ -1,5 +1,7 @@
 # Stage 1: Build
-FROM node:20.15.0-alpine AS builder
+FROM node:20.15.0-bullseye AS builder
+
+ENV NODE_OPTIONS=--max-old-space-size=4096
 
 WORKDIR /app
 
@@ -11,7 +13,7 @@ COPY tailwind.config.js ./
 COPY postcss.config.js ./
 
 # Installer les dépendances
-RUN npm install --force
+RUN npm install --legacy-peer-deps
 # RUN npm install --legacy-peer-deps
 
 # Copier le code source
