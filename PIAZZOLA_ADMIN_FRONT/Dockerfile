@@ -5,7 +5,6 @@ WORKDIR /app
 
 # Copier les fichiers de dépendances
 COPY package*.json ./
-COPY package-lock.json ./
 COPY tsconfig.json ./
 COPY vite.config.ts ./
 COPY tailwind.config.js ./
